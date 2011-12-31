@@ -27,7 +27,9 @@ class SiriProxy::Plugin::Macworld < SiriProxy::Plugin
     say "Checking Macworld for news..."
 	  
 		doc = Nokogiri::HTML(open("http://www.macworld.com/news.html"))
-    entry = doc.css("#leftColumn")
+    col = doc.css("#leftColumn")
+    
+    entry = col.css("ul li")
       	
     if entry.nil?
       say "I'm sorry, I didn't see any Macword news. I failed you..."
